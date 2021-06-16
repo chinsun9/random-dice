@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "tsc-watch --onSuccess \"yarn tscfix\"",
+    "tscfix": "tsc-es2020-fix --target public/js"
   },
   "keywords": [],
   "author": "",

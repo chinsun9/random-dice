@@ -1,11 +1,11 @@
 * {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --boxColor: #0ff7;
+  --boxColor: rgb(0, 238, 255);
   --rotateSpeed: 30s;
   --bounceSpped: 1.5s;
 }
@@ -28,45 +28,40 @@ body {
   animation: sceneRotate var(--rotateSpeed) infinite linear;
 }
 
-.ball {
-  position: absolute;
-  bottom: 1em;
-  left: -0.5em;
-  width: 1em;
-  height: 1em;
-  background-color: lightblue;
-  background-image: radial-gradient(circle at top, lightblue, #000);
-  border-radius: 50%;
-  animation: ballBounce var(--bounceSpped) infinite ease-out,
-    sceneRotate var(--rotateSpeed) infinite linear reverse;
-}
-
 .cube {
   position: absolute;
   bottom: -1em;
   left: -1em;
   width: 2em;
   height: 2em;
-  animation: cubeHeight var(--bounceSpped) infinite linear;
+}
+
+.cube:hover {
+  cursor: pointer;
+}
+
+.cube > * {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 1px solid rgba(173, 164, 164, 0.411);
 }
 
 .cube > .left,
 .cube > .right,
 .cube > .front,
 .cube > .back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
   background-color: var(--boxColor);
   box-shadow: 0 0 0.5em #000a inset;
 }
 
 .cube > .bottom {
-  position: absolute;
   bottom: 0;
-  width: 2em;
-  height: 2em;
-  background-color: rgba(0, 0, 0, 0.26);
+  background-color: var(--boxColor);
   transform: translateY(50%) rotateX(90deg);
 }
 
@@ -83,19 +78,8 @@ body {
   transform: rotateY(270deg) translateZ(1em);
 }
 .cube > .top {
-  position: absolute;
-  width: 2em;
-  height: 2em;
   background-color: var(--boxColor);
   transform: translateY(-50%) rotateX(90deg);
-}
-
-.ballShadow {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(#0007, #0000 50%);
-  animation: ballShadow var(--bounceSpped) infinite ease-out;
 }
 
 .floor {
@@ -115,39 +99,9 @@ body {
   }
 }
 
-@keyframes ballBounce {
-  0%,
-  100% {
-    bottom: 0.8em;
-  }
-  50% {
-    bottom: 3em;
-    animation-timing-function: ease-in;
-  }
-}
-
-@keyframes ballShadow {
-  0%,
-  8%,
-  93%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(2);
-    opacity: 0.5;
-    animation-timing-function: ease-in;
-  }
-}
-
-@keyframes cubeHeight {
-  0%,
-  100% {
-    height: 1.8em;
-  }
-  20%,
-  96% {
-    height: 2em;
-  }
+.cubeContainer {
+  transition: all 0.2s ease;
+  position: absolute;
+  transform-style: preserve-3d;
+  bottom: 4rem;
 }
