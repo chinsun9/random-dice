@@ -14,12 +14,16 @@ const cubeContainerElement = document.querySelector<HTMLDivElement>(
 )!;
 const cubeElement = cubeContainerElement.firstElementChild;
 
-async function rollDice() {
-  const xrand = getRandom(0, 360);
-  const zrand = getRandom(0, 360);
-  const yrand = getRandom(0, 360);
+let x = 0;
+let y = 0;
+let z = 0;
 
-  cubeContainerElement.style.transform = `rotateX(${xrand}deg) rotateY(${yrand}deg) rotateZ(${zrand}deg)`;
+async function rollDice() {
+  x += getRandom(100, 360);
+  y += getRandom(100, 360);
+  z += getRandom(100, 360);
+
+  cubeContainerElement.style.transform = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
   await new Promise((resolve) => {
     setTimeout(() => {
       resolve(1);
@@ -53,10 +57,13 @@ bodyElement.addEventListener('click', async (event) => {
 
   initDice();
 
-  for (let index = 0; index < 5; index += 1) {
+  for (let index = 0; index < 2; index += 1) {
     // eslint-disable-next-line no-await-in-loop
     await rollDice();
   }
+  cubeContainerElement.style.transform = `rotateX(${getRandom(
+    0,
+    10
+  )}deg) rotateY(${getRandom(0, 10)}deg) rotateZ(${getRandom(0, 10)}deg)`;
   faceDice();
-  rollDice();
 });
