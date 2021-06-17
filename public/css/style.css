@@ -100,7 +100,6 @@ body {
 }
 
 .cubeContainer {
-  transition: all 0.2s ease;
   position: absolute;
   transform-style: preserve-3d;
   bottom: 4rem;
