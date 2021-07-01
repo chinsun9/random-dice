@@ -1,14 +1,14 @@
 import Dice from './dice';
 
-const bodyElement = document.body;
+const sceneElement =
+  document.querySelector<HTMLDivElement>('body > div.scene')!;
 const cubeContainerElement = document.querySelector<HTMLDivElement>(
   'body > div > div.cubeContainer'
 )!;
 
 const dice = new Dice(cubeContainerElement);
 
-bodyElement.addEventListener('click', (event) => {
-  event.preventDefault();
+sceneElement.addEventListener('click', () => {
 
   dice.initDice();
   dice.rollDice();
