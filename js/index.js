@@ -1,14 +1,12 @@
 import Dice from './dice.js';
-var bodyElement = document.body;
+var sceneElement = document.querySelector('body > div.scene');
 var cubeContainerElement = document.querySelector('body > div > div.cubeContainer');
 var dice = new Dice(cubeContainerElement);
-bodyElement.addEventListener('click', function (event) {
-    event.preventDefault();
+sceneElement.addEventListener('click', function () {
     dice.roll();
 });
 var lastTimestamp = new Date().getTime();
 window.addEventListener('devicemotion', function (event) {
-    event.preventDefault();
     if (!event.acceleration) {
         console.log("no acceleration");
         return;
@@ -18,10 +16,8 @@ window.addEventListener('devicemotion', function (event) {
         return;
     }
     lastTimestamp = currentTime;
-    var isActive = Math.max(Math.abs(event.acceleration.x), Math.abs(event.acceleration.y), Math.abs(event.acceleration.z));
-    if (isActive >= 4) {
-        console.log("run");
-        event.preventDefault();
+    var acceleration = Math.max(Math.abs(event.acceleration.x), Math.abs(event.acceleration.y), Math.abs(event.acceleration.z));
+    if (acceleration >= 4) {
         dice.roll();
     }
 });

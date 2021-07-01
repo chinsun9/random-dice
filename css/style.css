@@ -104,6 +104,7 @@ body {
   position: absolute;
   bottom: 4rem;
   transform-style: preserve-3d;
+  transition: all 4s;
   transition-timing-function: cubic-bezier(0, 0.6, 0, 0.98);
 }
 

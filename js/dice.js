@@ -46,14 +46,8 @@ var Dice = /** @class */ (function () {
         this.sto = setTimeout(function () { }, 0);
         this.isRolling = false;
     }
-    Dice.prototype.initXYZ = function () {
-        this.x = 0;
-        this.y = 0;
-        this.z = 0;
-    };
     Dice.prototype.rollDice = function () {
         var _this = this;
-        console.log("rolldice");
         clearTimeout(this.sto);
         this.sto = setTimeout(function () {
             _this.faceDice();
@@ -76,45 +70,24 @@ var Dice = /** @class */ (function () {
         this.isRolling = false;
     };
     Dice.prototype.initDice = function () {
-        var _this = this;
         var _a;
-        console.log("initdice");
-        this.initXYZ();
         var array = (_a = this.cubeElement) === null || _a === void 0 ? void 0 : _a.children;
         for (var index = 0; index < array.length; index += 1) {
             var element = array[index];
             element.innerHTML = (index + 1).toString();
         }
-        this.cubeContainerElement.style.transition =
-            'all 0s cubic-bezier(0,.6,0,.98)';
-        setTimeout(function () {
-            _this.cubeContainerElement.style.transform = "rotateX(" + 0 + "deg) rotateY(" + 0 + "deg) rotateZ(" + 0 + "deg)";
-        }, 1);
     };
     Dice.prototype.roll = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (this.isRolling) {
-                            console.log("already rolling");
-                            return [2 /*return*/];
-                        }
-                        this.isRolling = true;
-                        this.initDice();
-                        return [4 /*yield*/, new Promise(function (resolve) {
-                                setTimeout(function () {
-                                    _this.cubeContainerElement.style.transition =
-                                        'all 4s cubic-bezier(0,.6,0,.98)';
-                                    resolve(100);
-                                }, 10);
-                            })];
-                    case 1:
-                        _a.sent();
-                        this.rollDice();
-                        return [2 /*return*/];
+                if (this.isRolling) {
+                    console.log("already rolling");
+                    return [2 /*return*/];
                 }
+                this.isRolling = true;
+                this.initDice();
+                this.rollDice();
+                return [2 /*return*/];
             });
         });
     };
