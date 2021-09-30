@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "postbuild": "yarn tscfix",
     "dev": "tsc-watch --onSuccess \"yarn tscfix\"",
-    "tscfix": "tsc-es2020-fix --target public/js",
+    "tscfix": "tsc-esm-fix --target public/js",
     "deploy": "gh-pages -d public"
   },
   "keywords": [],
